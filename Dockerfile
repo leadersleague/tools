@@ -1,13 +1,13 @@
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y && \
-    wget && \
-    curl && \
-    ssh && \
-    git && \
-    tar && \
-    mysql-client && \
-    make && \
+RUN apt update && apt install -y \
+    wget \
+    curl \
+    ssh \
+    git \
+    tar \
+    mysql-client \
+    make \
     golang && \
     rm -r /var/lib/apt/lists/*
 
