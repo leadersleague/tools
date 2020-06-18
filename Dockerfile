@@ -9,8 +9,16 @@ RUN apt update && apt install -y \
     tar \
     mysql-client \
     make \
+    jq \
+    python-pip \
     golang && \
     rm -r /var/lib/apt/lists/*
+
+RUN pip install --user awscli
+
+RUN curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
+    sudo tee -a /usr/bin/ecs-deploy \
+    sudo chmod +x /usr/bin/ecs-deploy
 
 RUN mkdir -p /root/.kube
 
