@@ -14,11 +14,12 @@ RUN apt update && apt install -y \
     golang && \
     rm -r /var/lib/apt/lists/*
 
-RUN add-apt-repository ppa:eugenesan/ppa && apt update && apt install -y jq && \
+RUN add-apt-repository ppa:eugenesan/ppa && apt update && apt install -y jq unzip && \
     rm -r /var/lib/apt/lists/*
 
-RUN pip install --user awscli
-RUN export PATH=$PATH:$HOME/.local/bin
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
 
 RUN curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | tee -a /usr/bin/ecs-deploy
 RUN chmod +x /usr/bin/ecs-deploy
