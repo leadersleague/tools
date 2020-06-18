@@ -9,14 +9,18 @@ RUN apt update && apt install -y \
     tar \
     mysql-client \
     make \
-    jq \
+    software-properties-common \
     python-pip \
     golang && \
     rm -r /var/lib/apt/lists/*
 
-RUN pip install --user awscli
+RUN add-apt-repository ppa:eugenesan/ppa && apt update && apt install -y jq && \
+    rm -r /var/lib/apt/lists/*
 
-RUN curl -i https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | tee -a /usr/bin/ecs-deploy
+RUN pip install --user awscli
+RUN export PATH=$PATH:$HOME/.local/bin
+
+RUN curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | tee -a /usr/bin/ecs-deploy
 RUN chmod +x /usr/bin/ecs-deploy
 
 RUN mkdir -p /root/.kube
