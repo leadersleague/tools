@@ -4,12 +4,12 @@ REGISTRY=registry.hub.docker.com/leadersleague
 
 function build() {
         docker build -t "${REGISTRY}/${1}" -f ./Dockerfile .
-        docker tag  "${REGISTRY}/${1}" "${REGISTRY}/${1}"
-        docker push "${REGISTRY}/${1}"
+        docker tag  "${REGISTRY}/${1}" "${REGISTRY}/${1}:1.0.2"
+        docker push "${REGISTRY}/${1}:1.0.2"
 }
 
 function build_and_push_images() {
-    build pipeline
+    build tools
 }
 
 #is ssh agent set ?

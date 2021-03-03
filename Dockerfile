@@ -11,6 +11,7 @@ RUN apt update && apt install -y \
     make \
     software-properties-common \
     python-pip \
+    jq \
     golang && \
     rm -r /var/lib/apt/lists/*
 
