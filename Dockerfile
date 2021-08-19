@@ -12,6 +12,7 @@ RUN apt update && apt install -y \
     software-properties-common \
     python-pip \
     jq \
+    docker \
     golang && \
     rm -r /var/lib/apt/lists/*
 
@@ -37,3 +38,5 @@ RUN mkdir /root/.ssh && \
 
 RUN curl -L https://github.com/drone/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz | tar zx && install -t /usr/local/bin drone && \
     rm ./drone
+
+COPY ./drone-docker-build.sh ./drone-docker-build.sh
